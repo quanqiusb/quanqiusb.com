@@ -1,108 +1,87 @@
-/* animations.js — decorative effects: parallax, tilt, mascot trails */
+/* GAMD - animations.js — scroll reveal, counters, parallax, emoji bubbles */
 (function () {
   'use strict';
 
-  // --- Parallax (light) for hero illustration on pointer move ---
-  const hero = document.querySelector('.hero');
-  if (hero && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const visual = hero.querySelector('.hero__visual');
-    const mascots = hero.querySelectorAll('.hero__mascot');
-    let raf = null;
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
-
-    hero.addEventListener('pointermove', (e) => {
-      const rect = hero.getBoundingClientRect();
-      targetX = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
-      targetY = ((e.clientY - rect.top) / rect.height - 0.5) * 16;
-      if (!raf) raf = requestAnimationFrame(loop);
-    });
-    hero.addEventListener('pointerleave', () => {
-      targetX = 0; targetY = 0;
-      if (!raf) raf = requestAnimationFrame(loop);
-    });
-
-    function loop() {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      if (visual) visual.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
-      mascots.forEach((m, i) => {
-        const factor = (i + 1) * 1.2;
-        m.style.transform = `translate3d(${-currentX * factor}px, ${-currentY * factor}px, 0)`;
-      });
-      if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
-        raf = requestAnimationFrame(loop);
-      } else {
-        raf = null;
-      }
-    }
-  }
-
-  // --- 3D tilt on service block visuals ---
-  const tiltEls = document.querySelectorAll('[data-tilt]');
-  if (tiltEls.length && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    tiltEls.forEach((el) => {
-      el.addEventListener('pointermove', (e) => {
-        const r = el.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width - 0.5);
-        const y = ((e.clientY - r.top) / r.height - 0.5);
-        el.style.transform = `perspective(900px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg) translateY(-4px)`;
-      });
-      el.addEventListener('pointerleave', () => {
-        el.style.transform = '';
-      });
-    });
-  }
-
-  // --- Set CSS custom property for SVG path drawing animations ---
-  document.querySelectorAll('[data-draw]').forEach((el) => {
-    try {
-      const len = el.getTotalLength ? el.getTotalLength() : 1000;
-      el.style.setProperty('--len', len);
-      el.style.strokeDasharray = len;
-      el.style.strokeDashoffset = len;
-    } catch (_) { /* not a path, skip */ }
-  });
-
-  // --- Header dark variant for dark hero sections ---
-  const darkSections = document.querySelectorAll('.hero, .subhero');
-  if (darkSections.length && headerForDark(darkSections[0])) {
-    const header = document.querySelector('.site-header');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+  // ---- IntersectionObserver: reveal elements ----
+  const revealTargets = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  if ('IntersectionObserver' in window && revealTargets.length) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          header.classList.add('is-dark');
-        } else if (entry.target === darkSections[0]) {
-          // Only flip back when we've scrolled past the first dark section
-          if (window.scrollY < entry.boundingClientRect.bottom) return;
-          header.classList.remove('is-dark');
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: `-${getHeaderHeight()}px 0px 0px 0px` });
-    darkSections.forEach((s) => observer.observe(s));
-
-    // Cleanup: when scrolled to top of any non-dark page, remove dark
-    window.addEventListener('scroll', () => {
-      if (window.scrollY < 50) {
-        const topIsDark = darkSections[0].getBoundingClientRect().bottom > 50;
-        header.classList.toggle('is-dark', topIsDark);
-      }
-    }, { passive: true });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealTargets.forEach(el => io.observe(el));
+  } else {
+    revealTargets.forEach(el => el.classList.add('in'));
   }
 
-  function headerForDark(el) { return el; }
-  function getHeaderHeight() {
-    const h = document.querySelector('.site-header');
-    return h ? h.offsetHeight : 72;
+  // ---- Animated counters ----
+  const counters = document.querySelectorAll('[data-counter]');
+  if ('IntersectionObserver' in window && counters.length) {
+    const animate = (el) => {
+      const target = parseFloat(el.getAttribute('data-counter'));
+      const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = parseInt(el.getAttribute('data-duration') || '1800', 10);
+      const start = performance.now();
+      const ease = t => 1 - Math.pow(1 - t, 3);
+      const tick = (now) => {
+        const p = Math.min(1, (now - start) / duration);
+        const v = target * ease(p);
+        el.textContent = v.toFixed(decimals) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toFixed(decimals) + suffix;
+      };
+      requestAnimationFrame(tick);
+    };
+    const co = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          co.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(el => co.observe(el));
   }
 
-  // --- Add subtle hover float to card icons (CSS handles transform, this just adds slight randomness) ---
-  document.querySelectorAll('.card__icon').forEach((icon) => {
-    icon.addEventListener('mouseenter', () => {
-      icon.style.transform = 'scale(1.15) rotate(-8deg)';
+  // ---- Subtle parallax on hero ----
+  const parallax = document.querySelectorAll('[data-parallax]');
+  if (parallax.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        parallax.forEach(el => {
+          const speed = parseFloat(el.getAttribute('data-parallax')) || 0.2;
+          el.style.transform = `translate3d(0, ${y * speed}px, 0)`;
+        });
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  // ---- Tilt-on-hover for cards (subtle 3D) ----
+  const tiltCards = document.querySelectorAll('[data-tilt]');
+  tiltCards.forEach(card => {
+    let raf = null;
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        card.style.transform = `perspective(900px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg) translateY(-4px)`;
+      });
     });
-    icon.addEventListener('mouseleave', () => {
-      icon.style.transform = '';
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
     });
   });
 })();

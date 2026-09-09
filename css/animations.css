@@ -1,224 +1,130 @@
-/* ==========================================================================
-   animations.css — keyframes, scroll-reveals, ticker, decorative effects
-   ========================================================================== */
+/* =========================================
+   GAMD - animations.css
+   Keyframes + scroll-reveal hooks
+   ========================================= */
 
-/* --- Keyframes --- */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-12px); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInLeft {
-  from { opacity: 0; transform: translateX(-28px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeInRight {
-  from { opacity: 0; transform: translateX(28px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
 @keyframes scaleIn {
   from { opacity: 0; transform: scale(0.92); }
   to   { opacity: 1; transform: scale(1); }
 }
-
-@keyframes ticker {
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+@keyframes float-bubble {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.7; }
+  90%  { opacity: 0.7; }
+  100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
+@keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,102,255,0.4); }
+  50%      { box-shadow: 0 0 0 16px rgba(0,102,255,0); }
 }
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50%      { transform: scale(1.08); opacity: 0.85; }
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
-
-@keyframes drawIn {
-  from { stroke-dashoffset: var(--len, 1000); }
-  to   { stroke-dashoffset: 0; }
+@keyframes shine {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
-
-@keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+@keyframes blink {
+  0%, 95%, 100% { transform: scaleY(1); }
+  97%            { transform: scaleY(0.1); }
 }
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
-}
-
-@keyframes wave {
-  0%   { transform: translateX(0) translateZ(0) scaleY(1); }
-  50%  { transform: translateX(-25%) translateZ(0) scaleY(0.55); }
-  100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
-}
-
-@keyframes bounceIn {
-  0%   { opacity: 0; transform: scale(0.3); }
-  50%  { opacity: 1; transform: scale(1.05); }
-  70%  { transform: scale(0.95); }
-  100% { transform: scale(1); }
-}
-
 @keyframes wiggle {
-  0%, 100% { transform: rotate(0); }
+  0%, 100% { transform: rotate(0deg); }
   25%      { transform: rotate(-6deg); }
   75%      { transform: rotate(6deg); }
 }
-
-/* --- Reveal on scroll (initial state + is-revealed) --- */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-  transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+@keyframes bounce-in {
+  0%   { opacity: 0; transform: scale(0.3); }
+  50%  { opacity: 1; transform: scale(1.06); }
+  70%  { transform: scale(0.97); }
+  100% { transform: scale(1); }
 }
-[data-reveal="left"]  { transform: translateX(-28px); }
-[data-reveal="right"] { transform: translateX(28px); }
-[data-reveal="scale"] { transform: scale(0.92); }
-[data-reveal].is-revealed {
-  opacity: 1;
-  transform: translate(0, 0) scale(1);
+@keyframes gradient-pan {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* --- Page load animations --- */
-.page-loaded [data-load="fade"] {
-  animation: fadeIn 0.8s var(--ease-out) both;
-}
-.page-loaded [data-load="up"] {
-  animation: fadeInUp 0.8s var(--ease-out) both;
-}
-.page-loaded [data-load="left"] {
-  animation: fadeInLeft 0.8s var(--ease-out) both;
-}
-.page-loaded [data-load="right"] {
-  animation: fadeInRight 0.8s var(--ease-out) both;
-}
-.page-loaded [data-load="scale"] {
-  animation: scaleIn 0.8s var(--ease-spring) both;
+/* Scroll-reveal targets */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out); will-change: opacity, transform; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out); }
+.reveal-left.in  { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out); }
+.reveal-right.in { opacity: 1; transform: translateX(0); }
+.reveal-scale { opacity: 0; transform: scale(0.94); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
+.reveal-scale.in { opacity: 1; transform: scale(1); }
+
+[data-delay="100"] { transition-delay: 100ms; }
+[data-delay="200"] { transition-delay: 200ms; }
+[data-delay="300"] { transition-delay: 300ms; }
+[data-delay="400"] { transition-delay: 400ms; }
+[data-delay="500"] { transition-delay: 500ms; }
+[data-delay="600"] { transition-delay: 600ms; }
+[data-delay="700"] { transition-delay: 700ms; }
+[data-delay="800"] { transition-delay: 800ms; }
+
+/* Decorative shine text */
+.shine-text {
+  background: linear-gradient(90deg, #ffb800 0%, #fff 50%, #ffb800 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shine 4s linear infinite;
 }
 
-[data-load-delay="100"] { animation-delay: 0.1s; }
-[data-load-delay="200"] { animation-delay: 0.2s; }
-[data-load-delay="300"] { animation-delay: 0.3s; }
-[data-load-delay="400"] { animation-delay: 0.4s; }
-[data-load-delay="500"] { animation-delay: 0.5s; }
-[data-load-delay="600"] { animation-delay: 0.6s; }
-[data-load-delay="800"] { animation-delay: 0.8s; }
+/* Hover lift utility */
+.hover-lift { transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out); }
+.hover-lift:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 
-/* --- Hover effects --- */
-.hover-lift { transition: transform 0.3s var(--ease-out); }
-.hover-lift:hover { transform: translateY(-4px); }
+/* Animate on load (page hero) */
+.hero-anim > * { opacity: 0; animation: fadeUp 900ms var(--ease-out) forwards; }
+.hero-anim > *:nth-child(1) { animation-delay: 100ms; }
+.hero-anim > *:nth-child(2) { animation-delay: 250ms; }
+.hero-anim > *:nth-child(3) { animation-delay: 400ms; }
+.hero-anim > *:nth-child(4) { animation-delay: 550ms; }
+.hero-anim > *:nth-child(5) { animation-delay: 700ms; }
+.hero-anim > *:nth-child(6) { animation-delay: 850ms; }
 
-.hover-glow { transition: box-shadow 0.3s, transform 0.3s; }
-.hover-glow:hover {
-  box-shadow: 0 0 32px rgba(255,184,0,0.4);
-  transform: translateY(-2px);
-}
+/* Floating elements */
+.float-slow { animation: float 6s ease-in-out infinite; }
+.float-med  { animation: float 4.5s ease-in-out infinite; }
+.float-fast { animation: float 3s ease-in-out infinite; }
+.wiggle     { animation: wiggle 2.5s ease-in-out infinite; }
+.bounce-in  { animation: bounce-in 800ms var(--ease-out) both; }
+.pulse      { animation: pulse-glow 2.4s ease-out infinite; }
+.spin-slow  { animation: spin-slow 18s linear infinite; }
 
-.hover-wiggle:hover { animation: wiggle 0.6s ease-in-out; }
-
-/* --- Decorative gradient backgrounds --- */
-.bg-aurora {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-}
-.bg-aurora::before,
-.bg-aurora::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: -1;
-  animation: float 8s ease-in-out infinite;
-}
-.bg-aurora::before {
-  top: -200px; right: -200px;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(255,184,0,0.4) 0%, transparent 70%);
-}
-.bg-aurora::after {
-  bottom: -200px; left: -200px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(255,107,107,0.35) 0%, transparent 70%);
-  animation-delay: 4s;
-}
-
-/* --- Loading bar at top of page --- */
-.page-loader {
-  position: fixed;
-  top: 0; left: 0;
-  height: 3px; width: 0%;
-  background: linear-gradient(90deg, #FFB800, #FF6B6B);
-  z-index: 9999;
-  transition: width 0.3s var(--ease-out), opacity 0.3s;
-  pointer-events: none;
-}
-.page-loader.is-done { opacity: 0; }
-
-/* --- Marquee for hero --- */
-.marquee {
-  display: flex;
-  gap: var(--s-5);
-  overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
-.marquee__track {
-  display: flex;
-  gap: var(--s-5);
-  flex-shrink: 0;
-  animation: ticker 40s linear infinite;
-}
-
-/* --- Section divider wave --- */
-.divider-wave {
-  position: absolute;
-  left: 0; right: 0;
-  width: 100%;
-  height: 60px;
-  display: block;
-}
-.divider-wave--top { top: -1px; transform: scaleY(-1); }
-.divider-wave--bottom { bottom: -1px; }
-
-/* --- Pulse dot indicator --- */
-.pulse-dot {
-  display: inline-block;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: #7FE5C5;
-  position: relative;
-  flex-shrink: 0;
-}
-.pulse-dot::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: #7FE5C5;
-  opacity: 0.6;
-  animation: pulse 2s ease-out infinite;
+/* Hero background gradient pan */
+.hero-gradient {
+  background: linear-gradient(120deg, #061327 0%, #0a2540 35%, #0066ff 100%);
+  background-size: 200% 200%;
+  animation: gradient-pan 16s ease-in-out infinite;
 }
