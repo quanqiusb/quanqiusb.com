@@ -1,0 +1,17 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+.env
+.env.local
+.vscode/
+.idea/
+
+# Legacy / working files
+_legacy/
+_legacy_images/
+generate_icons.py
+README.md
+SPEC.md
+SEPC.utf8.txt

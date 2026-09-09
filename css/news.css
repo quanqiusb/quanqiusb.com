@@ -1,0 +1,25 @@
+/* news.css */
+.news-filter {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  padding: 1rem 0;
+}
+.chip {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  border: 1.5px solid var(--color-gray-200);
+  color: var(--color-gray-700);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 200ms var(--ease-out);
+}
+.chip:hover { border-color: var(--color-brand-500); color: var(--color-brand-500); }
+.chip.is-active { background: var(--color-brand-500); color: var(--color-white); border-color: var(--color-brand-500); }
+
+.news-grid-full {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.news-grid-full .news-card[hidden] { display: none; }

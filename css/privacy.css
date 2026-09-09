@@ -1,0 +1,26 @@
+/* privacy.css — legal pages */
+.legal-hero {
+  padding: calc(var(--header-h) + 4rem) 0 3rem;
+  background: var(--gradient-hero);
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+.legal-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(0,102,255,0.4), transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(255,184,0,0.2), transparent 50%);
+}
+.legal-hero > * { position: relative; }
+.legal-hero h1 { color: var(--color-white); margin-top: 0.5rem; font-size: clamp(2.25rem, 5vw, 3.5rem); }
+.legal-hero .lead { color: rgba(255,255,255,0.85); max-width: 70ch; }
+.legal-updated { color: rgba(255,255,255,0.7) !important; font-size: 0.95rem; margin-top: 1rem; }
+
+.legal-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 900px) { .legal-container { grid-template-columns: 1fr; } }
+.legal-prose { font-size: 1rem; }

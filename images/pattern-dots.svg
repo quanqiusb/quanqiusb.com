@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="Dot pattern">
+  <defs>
+    <pattern id="d" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.4" fill="currentColor"/>
+    </pattern>
+  </defs>
+  <rect width="80" height="80" fill="url(#d)"/>
+</svg>

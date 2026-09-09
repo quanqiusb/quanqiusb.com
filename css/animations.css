@@ -1,0 +1,224 @@
+/* ==========================================================================
+   animations.css — keyframes, scroll-reveals, ticker, decorative effects
+   ========================================================================== */
+
+/* --- Keyframes --- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.08); opacity: 0.85; }
+}
+
+@keyframes drawIn {
+  from { stroke-dashoffset: var(--len, 1000); }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+@keyframes wave {
+  0%   { transform: translateX(0) translateZ(0) scaleY(1); }
+  50%  { transform: translateX(-25%) translateZ(0) scaleY(0.55); }
+  100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+}
+
+@keyframes bounceIn {
+  0%   { opacity: 0; transform: scale(0.3); }
+  50%  { opacity: 1; transform: scale(1.05); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0); }
+  25%      { transform: rotate(-6deg); }
+  75%      { transform: rotate(6deg); }
+}
+
+/* --- Reveal on scroll (initial state + is-revealed) --- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal="left"]  { transform: translateX(-28px); }
+[data-reveal="right"] { transform: translateX(28px); }
+[data-reveal="scale"] { transform: scale(0.92); }
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* --- Page load animations --- */
+.page-loaded [data-load="fade"] {
+  animation: fadeIn 0.8s var(--ease-out) both;
+}
+.page-loaded [data-load="up"] {
+  animation: fadeInUp 0.8s var(--ease-out) both;
+}
+.page-loaded [data-load="left"] {
+  animation: fadeInLeft 0.8s var(--ease-out) both;
+}
+.page-loaded [data-load="right"] {
+  animation: fadeInRight 0.8s var(--ease-out) both;
+}
+.page-loaded [data-load="scale"] {
+  animation: scaleIn 0.8s var(--ease-spring) both;
+}
+
+[data-load-delay="100"] { animation-delay: 0.1s; }
+[data-load-delay="200"] { animation-delay: 0.2s; }
+[data-load-delay="300"] { animation-delay: 0.3s; }
+[data-load-delay="400"] { animation-delay: 0.4s; }
+[data-load-delay="500"] { animation-delay: 0.5s; }
+[data-load-delay="600"] { animation-delay: 0.6s; }
+[data-load-delay="800"] { animation-delay: 0.8s; }
+
+/* --- Hover effects --- */
+.hover-lift { transition: transform 0.3s var(--ease-out); }
+.hover-lift:hover { transform: translateY(-4px); }
+
+.hover-glow { transition: box-shadow 0.3s, transform 0.3s; }
+.hover-glow:hover {
+  box-shadow: 0 0 32px rgba(255,184,0,0.4);
+  transform: translateY(-2px);
+}
+
+.hover-wiggle:hover { animation: wiggle 0.6s ease-in-out; }
+
+/* --- Decorative gradient backgrounds --- */
+.bg-aurora {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.bg-aurora::before,
+.bg-aurora::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  animation: float 8s ease-in-out infinite;
+}
+.bg-aurora::before {
+  top: -200px; right: -200px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255,184,0,0.4) 0%, transparent 70%);
+}
+.bg-aurora::after {
+  bottom: -200px; left: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,107,107,0.35) 0%, transparent 70%);
+  animation-delay: 4s;
+}
+
+/* --- Loading bar at top of page --- */
+.page-loader {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px; width: 0%;
+  background: linear-gradient(90deg, #FFB800, #FF6B6B);
+  z-index: 9999;
+  transition: width 0.3s var(--ease-out), opacity 0.3s;
+  pointer-events: none;
+}
+.page-loader.is-done { opacity: 0; }
+
+/* --- Marquee for hero --- */
+.marquee {
+  display: flex;
+  gap: var(--s-5);
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee__track {
+  display: flex;
+  gap: var(--s-5);
+  flex-shrink: 0;
+  animation: ticker 40s linear infinite;
+}
+
+/* --- Section divider wave --- */
+.divider-wave {
+  position: absolute;
+  left: 0; right: 0;
+  width: 100%;
+  height: 60px;
+  display: block;
+}
+.divider-wave--top { top: -1px; transform: scaleY(-1); }
+.divider-wave--bottom { bottom: -1px; }
+
+/* --- Pulse dot indicator --- */
+.pulse-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #7FE5C5;
+  position: relative;
+  flex-shrink: 0;
+}
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: #7FE5C5;
+  opacity: 0.6;
+  animation: pulse 2s ease-out infinite;
+}

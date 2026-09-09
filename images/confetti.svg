@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Confetti decoration">
+  <g>
+    <rect x="20" y="40" width="14" height="6" rx="1" fill="#ffb800" transform="rotate(20 27 43)"/>
+    <rect x="60" y="20" width="14" height="6" rx="1" fill="#3b8aff" transform="rotate(-15 67 23)"/>
+    <rect x="120" y="50" width="14" height="6" rx="1" fill="#10b981" transform="rotate(35 127 53)"/>
+    <rect x="180" y="30" width="14" height="6" rx="1" fill="#ef4444" transform="rotate(-25 187 33)"/>
+    <circle cx="40" cy="100" r="5" fill="#ffb800"/>
+    <circle cx="200" cy="120" r="5" fill="#3b8aff"/>
+    <circle cx="100" cy="180" r="5" fill="#10b981"/>
+    <circle cx="160" cy="200" r="5" fill="#ef4444"/>
+    <polygon points="60,150 70,150 65,160" fill="#ffb800"/>
+    <polygon points="180,170 190,170 185,180" fill="#3b8aff"/>
+    <path d="M30 200 q 10 -10 20 0" stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M150 90 q 10 -10 20 0" stroke="#ef4444" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

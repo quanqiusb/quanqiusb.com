@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a2540" />
+  <title>Page Not Found — GAMD</title>
+  <meta name="description" content="The page you're looking for doesn't exist. Return to GAMD's home or browse our services." />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://quanqiusb.com/" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <style>
+    .notfound { min-height: 100vh; display: grid; place-items: center; padding: 8rem 1rem 4rem; text-align: center; background: var(--gradient-hero); color: var(--color-white); position: relative; overflow: hidden; }
+    .notfound h1 { font-size: clamp(4rem, 12vw, 8rem); color: var(--color-accent-500); margin: 0; }
+    .notfound h2 { color: var(--color-white); margin: 1rem 0 0.5rem; }
+    .notfound p { color: rgba(255,255,255,0.8); max-width: 50ch; margin: 0 auto 2rem; }
+    .notfound-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .notfound-mascot { width: 180px; height: 180px; margin: 0 auto 1.5rem; animation: float 4s ease-in-out infinite; }
+    .notfound::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 20%, rgba(0,102,255,0.4), transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,184,0,0.3), transparent 50%); }
+    .notfound > * { position: relative; }
+  </style>
+</head>
+<body>
+<section class="notfound">
+  <div>
+    <img class="notfound-mascot" src="images/animals/animal-fox.svg" alt="A confused fox mascot"/>
+    <h1>404</h1>
+    <h2>This page wandered off 🦊</h2>
+    <p>Even our research network couldn't track it down. Let's get you back to a friendly place.</p>
+    <div class="notfound-actions">
+      <a class="btn btn-gold btn-lg" href="index.html">Back to Home</a>
+      <a class="btn btn-ghost btn-lg" href="contact.html">Contact Us</a>
+    </div>
+  </div>
+</section>
+</body>
+</html>

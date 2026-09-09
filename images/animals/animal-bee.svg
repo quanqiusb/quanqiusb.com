@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280" role="img" aria-label="Bee mascot - productivity"><title>Bee mascot</title>
+  <defs>
+    <linearGradient id="bee-yellow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffd84a"/>
+      <stop offset="100%" stop-color="#ffb800"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="80" cy="110" rx="36" ry="22" fill="rgba(255,255,255,0.7)" stroke="#94a0b3" stroke-width="1.5" transform="rotate(-30 80 110)"/>
+  <ellipse cx="200" cy="110" rx="36" ry="22" fill="rgba(255,255,255,0.7)" stroke="#94a0b3" stroke-width="1.5" transform="rotate(30 200 110)"/>
+  <ellipse cx="140" cy="160" rx="68" ry="56" fill="url(#bee-yellow)"/>
+  <path d="M80 150 Q 140 142 200 150 L 200 170 Q 140 178 80 170 Z" fill="#1a1a2e"/>
+  <path d="M88 200 Q 140 192 192 200 L 188 210 Q 140 218 92 210 Z" fill="#1a1a2e"/>
+  <circle cx="140" cy="92" r="36" fill="#1a1a2e"/>
+  <path d="M124 64 Q 116 40 108 36" stroke="#1a1a2e" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M156 64 Q 164 40 172 36" stroke="#1a1a2e" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="108" cy="36" r="5" fill="#1a1a2e"/>
+  <circle cx="172" cy="36" r="5" fill="#1a1a2e"/>
+  <ellipse cx="128" cy="86" rx="9" ry="11" fill="#fff"/>
+  <ellipse cx="152" cy="86" rx="9" ry="11" fill="#fff"/>
+  <circle cx="130" cy="88" r="5" fill="#1a1a2e"/>
+  <circle cx="154" cy="88" r="5" fill="#1a1a2e"/>
+  <circle cx="132" cy="86" r="2" fill="#fff"/>
+  <circle cx="156" cy="86" r="2" fill="#fff"/>
+  <path d="M130 104 Q 140 110 150 104" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="116" cy="100" r="6" fill="#ff9eb1" opacity="0.8"/>
+  <circle cx="164" cy="100" r="6" fill="#ff9eb1" opacity="0.8"/>
+  <path d="M196 168 L 220 188 L 200 180 Z" fill="#1a1a2e"/>
+  <ellipse cx="98" cy="216" rx="6" ry="14" fill="#1a1a2e" transform="rotate(-15 98 216)"/>
+  <ellipse cx="120" cy="220" rx="6" ry="14" fill="#1a1a2e"/>
+  <ellipse cx="160" cy="220" rx="6" ry="14" fill="#1a1a2e"/>
+  <ellipse cx="182" cy="216" rx="6" ry="14" fill="#1a1a2e" transform="rotate(15 182 216)"/>
+  <rect x="180" y="200" width="36" height="26" rx="2" fill="#0a2540"/>
+  <rect x="190" y="194" width="16" height="6" rx="1" fill="none" stroke="#0a2540" stroke-width="2"/>
+  <line x1="198" y1="208" x2="198" y2="218" stroke="#ffb800" stroke-width="2"/>
+</svg>

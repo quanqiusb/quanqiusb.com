@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280" role="img" aria-label="Fox mascot - wisdom"><title>Fox mascot</title>
+  <defs>
+    <linearGradient id="fox-fur" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff8a3d"/>
+      <stop offset="100%" stop-color="#e76a1c"/>
+    </linearGradient>
+    <linearGradient id="fox-belly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff6ec"/>
+      <stop offset="100%" stop-color="#fde2c2"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="140" cy="220" rx="78" ry="48" fill="url(#fox-fur)"/>
+  <ellipse cx="140" cy="232" rx="58" ry="32" fill="url(#fox-belly)"/>
+  <path d="M70 220 Q 30 200 38 240 Q 42 268 78 250 Q 100 240 95 222 Z" fill="url(#fox-fur)"/>
+  <ellipse cx="50" cy="232" rx="14" ry="11" fill="url(#fox-belly)"/>
+  <ellipse cx="148" cy="130" rx="68" ry="62" fill="url(#fox-fur)"/>
+  <path d="M88 92 L 100 38 L 138 80 Z" fill="url(#fox-fur)"/>
+  <path d="M210 92 L 198 38 L 160 80 Z" fill="url(#fox-fur)"/>
+  <path d="M100 86 L 108 50 L 130 80 Z" fill="#1a1a2e"/>
+  <path d="M198 86 L 190 50 L 168 80 Z" fill="#1a1a2e"/>
+  <path d="M100 138 Q 148 200 196 138 Q 180 178 148 184 Q 116 178 100 138 Z" fill="url(#fox-belly)"/>
+  <g transform="translate(148 50)">
+    <polygon points="-46 0 0 -16 46 0 0 16" fill="#0a2540"/>
+    <polygon points="-50 0 -46 8 46 8 50 0 46 -2 -46 -2" fill="#0a2540"/>
+    <circle cx="0" cy="-18" r="4" fill="#ffb800"/>
+    <line x1="0" y1="-14" x2="36" y2="-2" stroke="#ffb800" stroke-width="2.5"/>
+    <circle cx="36" cy="-2" r="4" fill="#ffb800"/>
+  </g>
+  <ellipse cx="120" cy="128" rx="9" ry="12" fill="#1a1a2e"/>
+  <ellipse cx="176" cy="128" rx="9" ry="12" fill="#1a1a2e"/>
+  <circle cx="123" cy="124" r="3" fill="#fff"/>
+  <circle cx="179" cy="124" r="3" fill="#fff"/>
+  <circle cx="98" cy="158" r="10" fill="#ff9eb1" opacity="0.7"/>
+  <circle cx="198" cy="158" r="10" fill="#ff9eb1" opacity="0.7"/>
+  <path d="M148 148 Q 144 154 140 152 Q 144 158 148 156 Q 152 158 156 152 Q 152 154 148 148 Z" fill="#1a1a2e"/>
+  <path d="M148 156 Q 140 168 134 162 M148 156 Q 156 168 162 162" stroke="#1a1a2e" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M96 156 L 76 152 M96 162 L 76 166 M200 156 L 220 152 M200 162 L 220 166" stroke="#1a1a2e" stroke-width="1.2" fill="none"/>
+  <ellipse cx="92" cy="220" rx="14" ry="22" fill="url(#fox-fur)"/>
+  <ellipse cx="204" cy="220" rx="14" ry="22" fill="url(#fox-fur)"/>
+  <ellipse cx="92" cy="234" rx="10" ry="12" fill="url(#fox-belly)"/>
+  <ellipse cx="204" cy="234" rx="10" ry="12" fill="url(#fox-belly)"/>
+  <rect x="170" y="190" width="40" height="30" rx="2" fill="#fff" stroke="#0a2540" stroke-width="2"/>
+  <line x1="190" y1="190" x2="190" y2="220" stroke="#0a2540" stroke-width="1.5"/>
+  <line x1="176" y1="200" x2="186" y2="200" stroke="#94a0b3" stroke-width="1"/>
+  <line x1="176" y1="206" x2="186" y2="206" stroke="#94a0b3" stroke-width="1"/>
+  <line x1="194" y1="200" x2="204" y2="200" stroke="#94a0b3" stroke-width="1"/>
+  <line x1="194" y1="206" x2="204" y2="206" stroke="#94a0b3" stroke-width="1"/>
+</svg>
